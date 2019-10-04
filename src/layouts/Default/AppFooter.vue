@@ -1,14 +1,19 @@
 <template>
   <div>
     <footer class="app-footer">
-      Footer
+      © Copyright {{ date }}
     </footer>
   </div>
 </template>
 
 <script>
 export default {
-	name: 'AppFooter'
+	name: 'AppFooter',
+	data () {
+		return {
+			date: new Date().getFullYear()
+		}
+	}
 
 }
 </script>
@@ -17,5 +22,7 @@ export default {
 	.app-footer {
 		text-align: center;
 		color: red;
+		padding-top: 60px;
+		padding-bottom: 20px;
 	}
 </style>

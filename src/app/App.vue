@@ -1,5 +1,8 @@
 <template>
-  <div id="#app">
+  <div
+    id="#app"
+    class="app"
+  >
     <Layout>
       <RouterView />
     </Layout>
@@ -11,10 +14,13 @@ export default {
 	name: 'App',
 	components: {
 		Layout
-	},
-	data () {
-		return {}
-	},
-	mounted () {}
+	}
+
 }
 </script>
+<style lang="scss">
+	.app {
+		background-color: lightgrey;
+		padding-left: 10px;
+	}
+</style>

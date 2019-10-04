@@ -1,7 +1,12 @@
 <template>
   <div>
     <header class="app-header">
-      Header
+      <p class="app-header--link">
+        Declaration
+      </p>
+      <p class="app-header--link">
+        History
+      </p>
     </header>
   </div>
 </template>
@@ -12,9 +17,15 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 	.app-header {
+		justify-content: center;
 		text-align: center;
 		color: red;
+		display: flex;
+		padding-bottom: 20px;
+		&--link {
+			padding: 10px;
+		}
 	}
 </style>

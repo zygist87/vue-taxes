@@ -1,6 +1,6 @@
-import Products from './Products'
+import Declare from './Declare'
 
-export default [...Products]
+export default [...Declare]
 
 // const Welcome = () => import(/* webpackChunkName: "welcome-view" */ '@/views/Welcome')
 
