@@ -5,7 +5,7 @@
     class="fixed-form"
   >
     <VueCell width="8of12">
-      Electricity
+      <slot />
     </VueCell>
     <VueCell width="2of12">
       <input
@@ -30,6 +30,7 @@ export default {
 		VueGrid,
 		VueCell
 	}
+
 }
 </script>
 

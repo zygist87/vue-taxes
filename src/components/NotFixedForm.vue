@@ -5,7 +5,7 @@
     class="not-fixed-form"
   >
     <VueCell width="2of12">
-      Electricity
+      <slot />
     </VueCell>
     <VueCell width="2of12">
       <input

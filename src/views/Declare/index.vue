@@ -1,13 +1,13 @@
 <template>
   <div class="product-view">
-    <NotFixedForm />
-    <NotFixedForm />
-    <FixedForm />
-    <FixedForm />
-    <FixedForm />
-    <NotFixedForm />
-    <FixedForm />
-    <FixedForm />
+    <NotFixedForm>Electricity</NotFixedForm>
+    <NotFixedForm>Cold water</NotFixedForm>
+    <FixedForm> Cold water fixed part </FixedForm>
+    <FixedForm> Heating </FixedForm>
+    <FixedForm> Other services </FixedForm>
+    <NotFixedForm>Gas</NotFixedForm>
+    <FixedForm> Gas fixed part </FixedForm>
+    <FixedForm> Internet </FixedForm>
     <TotalPay />
   </div>
 </template>

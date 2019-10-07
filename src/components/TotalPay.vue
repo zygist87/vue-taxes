@@ -12,7 +12,7 @@
     </VueCell>
 
     <VueCell width="2of12">
-      mok4tina suma
+      Mokėtina suma
     </VueCell>
   </VueGrid>
 </template>
