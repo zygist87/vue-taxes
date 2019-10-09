@@ -1,31 +1,61 @@
 <template>
   <div>
     <header class="app-header">
-      <p class="app-header--link">
-        Declaration
-      </p>
-      <p class="app-header--link">
-        History
-      </p>
+      <nav class="app-navigation">
+        <ul class="app-link">
+          <li>
+            <RouterLink
+              v-for="route in links"
+              :key="route.name"
+              class="app-link"
+              :to="{ name: route.name || route.meta.defaultName }"
+              exact
+            >
+              {{ route.meta.displayName }}
+            </RouterLink>
+          </li>
+        </ul>
+      </nav>
     </header>
   </div>
 </template>
 
 <script>
+import routes from '@/routes'
 export default {
-	name: 'AppHeader'
+	name: 'AppHeader',
+	data () {
+		return {
+			routes
+		}
+	},
+	computed: {
+		links () {
+			return this.routes.filter(route => route.meta.displayName)
+		}
+	}
 }
 </script>
 
-<style lang="scss">
+<style scope lang="scss">
 	.app-header {
+		display: flex;
 		justify-content: center;
 		text-align: center;
-		color: red;
-		display: flex;
-		padding-bottom: 20px;
-		&--link {
-			padding: 10px;
-		}
+		background-color: lightgrey;
+		list-style-type: none;
+	}
+	.app-link {
+		font-size: 24px;
+		font-weight: 400;
+		margin-right: 40px;
+		list-style-type: none;
+		text-decoration: none;
+		color: black;
+		width: auto;
+	}
+	.router-link-active {
+		color: blue;
+		text-decoration: underline;
 	}
 </style>

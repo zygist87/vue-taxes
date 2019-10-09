@@ -1,6 +1,7 @@
-import Declare from './Declare'
+import Form from './Form'
+import History from './History'
 
-export default [...Declare]
+export default [...Form, ...History]
 
 // const Welcome = () => import(/* webpackChunkName: "welcome-view" */ '@/views/Welcome')
 

@@ -21,7 +21,7 @@ import TotalPay from '@/components/TotalPay'
 // import { createNamespacedHelpers } from 'vuex'
 // const { mapActions, mapGetters } = createNamespacedHelpers('Products')
 export default {
-	name: 'ProductView',
+	name: 'FormView',
 	components: {
 		NotFixedForm,
 		FixedForm,
