@@ -1,10 +1,10 @@
-// import Products from './modules/Products'
+import Payments from './modules/Payments'
 
-// export default {
-// 	strict: process.env.NODE_ENV !== 'production',
-// 	modules: { Products },
-// 	state: {},
-// 	getters: {},
-// 	mutations: {},
-// 	actions: {}
-// }
+export default {
+	strict: process.env.NODE_ENV !== 'production',
+	modules: { Payments },
+	state: {},
+	getters: {},
+	mutations: {},
+	actions: {}
+}
