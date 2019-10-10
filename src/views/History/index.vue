@@ -11,8 +11,8 @@
         {{ one.date }} ---------------------- {{ one.pay }}
       </li>
     </ul>
-    <span>{{ bla | moment("dddd, MMMM Do YYYY") }}</span>
-    <span>{{ moment(bla).format("YYYY MMMM dddd, h:mm:ss") }}</span>
+    
+    <span>{{ moment(bla).format("YYYY MM DD - h:mm:ss") }}</span>
   </div>
 </template>
 

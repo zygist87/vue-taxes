@@ -1,13 +1,41 @@
 <template>
   <div class="product-view">
-    <NotFixedForm>Electricity</NotFixedForm>
-    <NotFixedForm>Cold water</NotFixedForm>
-    <FixedForm> Cold water fixed part </FixedForm>
-    <FixedForm> Heating </FixedForm>
-    <FixedForm> Other services </FixedForm>
-    <NotFixedForm>Gas</NotFixedForm>
-    <FixedForm> Gas fixed part </FixedForm>
-    <FixedForm> Internet </FixedForm>
+    <NotFixedForm
+      name="Electricity"
+      from="0"
+      rate="0.13"
+    >
+      Electricity
+    </NotFixedForm>
+    <NotFixedForm
+      name="Cold Water"
+      from="0"
+      rate="0.56"
+    >
+      Cold water
+    </NotFixedForm>
+    <FixedForm name="Cold Water Fixed Part">
+      Cold water fixed part
+    </FixedForm>
+    <FixedForm name="Heating">
+      Heating
+    </FixedForm>
+    <FixedForm name="Other Services">
+      Other services
+    </FixedForm>
+    <NotFixedForm name="Gas">
+      Gas
+    </NotFixedForm>
+    <FixedForm
+      name="Gas Fixed"
+      from="0"
+      rate="1.36"
+    >
+      Gas fixed part
+    </FixedForm>
+    <FixedForm name="Internet">
+      Internet
+    </FixedForm>
     <TotalPay />
   </div>
 </template>

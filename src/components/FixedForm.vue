@@ -4,26 +4,36 @@
     justify="start"
     class="fixed-form"
   >
-    <VueCell width="8of12">
-      <!-- <slot />  -->
-      <ul>
+    <VueCell
+      v-model="form.name = name"
+      width="8of12"
+    >
+      <slot />
+      <button @click="toConsole">
+        to console.log
+      </button>
+      <!-- <ul>
         <li v-for="one in neww">
           {{ one }}
         </li>
       </ul>
       {{ singlePayment }}
-      {{ neww }}
+      {{ neww }} -->
     </VueCell>
     <VueCell width="2of12">
       <input
-        type="text"
+        v-model="form.rate"
+        type="number"
         placeholder="Fixed part"
       >
     </VueCell>
     <VueCell width="2of12">
       <input
+        v-model="form.pay = form.rate"
         type="text"
         placeholder="Pay"
+
+        disabled
       >
     </VueCell>
   </VueGrid>
@@ -39,9 +49,17 @@ export default {
 		VueGrid,
 		VueCell
 	},
+	props: {
+		name
+	},
 	data () {
 		return {
-			payment: {}
+			form: {
+				name: '',
+				// name: this.name,
+				rate: '',
+				pay: ''
+			}
 		}
 	},
 	computed: {
@@ -52,6 +70,13 @@ export default {
 			singlePayment: 'singlePayment',
 			neww: 'new'
 		})
+	},
+	methods: {
+		toConsole () {
+			console.log('name ' + this.form.name)
+			console.log('rate ' + this.form.rate)
+			console.log('pay ' + this.form.pay)
+		}
 	}
 }
 
