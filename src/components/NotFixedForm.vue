@@ -5,7 +5,7 @@
     class="not-fixed-form"
   >
     <VueCell
-      v-model="form.name = name"
+      v-model="form.name"
       width="2of12"
     >
       <slot />
@@ -15,7 +15,7 @@
     </VueCell>
     <VueCell width="2of12">
       <input
-        v-model="form.from = from"
+        v-model="form.from"
         type="number"
         placeholder="From"
         value="0"
@@ -24,22 +24,22 @@
     </VueCell>
     <VueCell width="2of12">
       <input
-        v-model="form.to"
+        v-model="to"
         type="number"
         placeholder="To"
       >
     </VueCell>
     <VueCell width="2of12">
       <input
-        v-model="form.difference = form.to - form.from"
-        type="text"
+        v-model="form.difference"
+        type="number"
         placeholder="Difference"
         disabled
       >
     </VueCell>
     <VueCell width="2of12">
       <input
-        v-model="form.rate = rate"
+        v-model="form.rate"
         type="number"
         placeholder="Rate"
         disabled
@@ -47,7 +47,7 @@
     </VueCell>
     <VueCell width="2of12">
       <input
-        v-model="form.pay = form.difference * form.rate"
+        v-model="form.pay"
         type="number"
         placeholder="Pay"
         disabled
@@ -64,22 +64,51 @@ export default {
 		VueGrid,
 		VueCell
 	},
-	props: [
-		'name',
-		'rate',
-		'from'
-	],
+	props: {
+		id: {
+			type: String,
+			default: null
+		},
+		name: {
+			type: String,
+			default: null
+		},
+		from: {
+			type: Number,
+			default: 0
+		},
+		rate: {
+			type: Number,
+			default: 0
+		}
+	},
 	data () {
 		return {
 			form: {
-				name: '',
-				from: '',
-				to: '',
-				difference: '',
-				rate: '',
-				pay: ''
+				name: this.name,
+				from: this.from,
+				to: 0,
+				difference: 0,
+				rate: this.rate,
+				pay: 0
 			}
 		}
+	},
+	computed: {
+		to: {
+			get () {
+				return this.form.to
+			},
+			set (value) {
+				this.form.to = value
+				const to = value.length > 0 ? value : 0
+				this.form.difference = parseFloat(to, 10) - parseFloat(this.form.from, 10)
+				this.form.pay = (this.form.difference * this.form.rate).toFixed(2)
+			}
+		}
+	},
+	created () {
+
 	},
 	methods: {
 		toConsole () {

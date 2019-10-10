@@ -5,7 +5,7 @@
     class="fixed-form"
   >
     <VueCell
-      v-model="form.name = name"
+      v-model="form.name"
       width="8of12"
     >
       <slot />
@@ -22,17 +22,16 @@
     </VueCell>
     <VueCell width="2of12">
       <input
-        v-model="form.rate"
+        v-model="rate"
         type="number"
         placeholder="Fixed part"
       >
     </VueCell>
     <VueCell width="2of12">
       <input
-        v-model="form.pay = form.rate"
-        type="text"
+        v-model="form.pay"
+        type="number"
         placeholder="Pay"
-
         disabled
       >
     </VueCell>
@@ -50,19 +49,31 @@ export default {
 		VueCell
 	},
 	props: {
-		name
+		name: {
+			type: String,
+			default: null
+		}
 	},
 	data () {
 		return {
 			form: {
-				name: '',
-				// name: this.name,
-				rate: '',
-				pay: ''
+				name: this.name,
+				rate: 0,
+				pay: 0
 			}
 		}
 	},
 	computed: {
+		rate: {
+			get () {
+				return this.form.rate
+			},
+			set (value) {
+				this.form.rate = value
+				const rate = value.length > 0 ? value : 0
+				this.form.pay = parseFloat(rate, 10).toFixed(2)
+			}
+		},
 		// ...mapState('Payments', {
 		// 	singlePayment: 'singlePayment'
 		// })
@@ -70,6 +81,9 @@ export default {
 			singlePayment: 'singlePayment',
 			neww: 'new'
 		})
+	},
+	created () {
+
 	},
 	methods: {
 		toConsole () {

@@ -8,7 +8,7 @@
       Total Pay
     </VueCell>
     <VueCell width="4of12">
-      <Button />
+      <Button @click="handleClick" />
     </VueCell>
 
     <VueCell width="2of12">
@@ -20,12 +20,24 @@
 <script>
 import { VueGrid, VueCell } from 'vue-grd'
 import Button from './Button'
+const moment = require('moment')
 export default {
 	name: 'TotalPay',
 	components: {
 		VueGrid,
 		VueCell,
 		Button
+	},
+	data () {
+		return {
+
+		}
+	},
+	methods: {
+		handleClick (event) {
+			console.log('labytis')
+			console.log(moment().format('YYYY MM DD - h:mm:ss'))
+		}
 	}
 }
 </script>

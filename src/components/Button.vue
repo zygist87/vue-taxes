@@ -2,13 +2,19 @@
   <button
     type="button"
     class="pay-button"
+    @click="handleClick"
   >
     Pay
   </button>
 </template>
 <script>
 export default {
-	name: 'Button'
+	name: 'Button',
+	methods: {
+		handleClick (e) {
+			this.$emit('click', e)
+		}
+	}
 }
 </script>
 

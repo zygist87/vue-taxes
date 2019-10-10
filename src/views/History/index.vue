@@ -1,26 +1,39 @@
 <template>
   <div>
-    <h1>Payments history</h1>
-    <ul>
-      <li v-for="payment in payments">
-        {{ payment.date }} ---------------------- {{ payment.pay }}
-      </li>
-    </ul>
-    <ul>
-      <li v-for="one in few">
-        {{ one.date }} ---------------------- {{ one.pay }}
-      </li>
-    </ul>
-    
-    <span>{{ moment(bla).format("YYYY MM DD - h:mm:ss") }}</span>
+    <h3 class="history-title">
+      Payments history
+    </h3>
+    <VueGrid
+      align="stretch"
+      justify="start"
+      class="fixed-form"
+    >
+      <VueCell
+        width="6of12"
+        class="left-side"
+      >
+        <span>{{ moment().format("YYYY MM DD - h:mm:ss") }}</span>
+      </VueCell>
+      <VueCell
+        width="6of12"
+        class="right-side"
+      >
+        <span>How mutch was paid</span>
+      </VueCell>
+    </VueGrid>
   </div>
 </template>
 
 <script>
+import { VueGrid, VueCell } from 'vue-grd'
 import { mapGetters } from 'vuex'
 const moment = require('moment')
 export default {
 	name: 'HistoryView',
+	components: {
+		VueGrid,
+		VueCell
+	},
 	data () {
 		return {
 			moment: moment
@@ -31,12 +44,21 @@ export default {
 			payments: 'payments',
 			few: 'few'
 		})
-	},
-	mounted () {
-		bla = new Date()
 	}
+
 }
 </script>
 
-<style>
+<style scope lang="scss">
+	.history-title {
+		text-align: center;
+		padding-bottom: 30px;
+	}
+	.left-side {
+		color: darkgreen;
+	}
+	.right-side {
+		text-align: right;
+		padding-right: 20px;
+	}
 </style>

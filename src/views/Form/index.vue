@@ -1,39 +1,57 @@
 <template>
   <div class="product-view">
     <NotFixedForm
+      :id="electricity"
       name="Electricity"
-      from="0"
-      rate="0.13"
+      :from="0"
+      :rate="0.13"
     >
       Electricity
     </NotFixedForm>
     <NotFixedForm
+      :id="coldWater"
       name="Cold Water"
-      from="0"
-      rate="0.56"
+      :from="0"
+      :rate="0.56"
     >
       Cold water
     </NotFixedForm>
-    <FixedForm name="Cold Water Fixed Part">
+    <FixedForm
+      :id="coldWaterFixed"
+      name="Cold Water Fixed Part"
+    >
       Cold water fixed part
     </FixedForm>
-    <FixedForm name="Heating">
+    <FixedForm
+      :id="heating"
+      name="Heating"
+    >
       Heating
     </FixedForm>
-    <FixedForm name="Other Services">
+    <FixedForm
+      :id="otherServices"
+      name="Other Services"
+    >
       Other services
     </FixedForm>
-    <NotFixedForm name="Gas">
+    <NotFixedForm
+      :id="gas"
+      name="Gas"
+      :from="0"
+      :rate="1.36"
+    >
       Gas
     </NotFixedForm>
     <FixedForm
+      :id="gasFixed"
       name="Gas Fixed"
-      from="0"
-      rate="1.36"
     >
       Gas fixed part
     </FixedForm>
-    <FixedForm name="Internet">
+    <FixedForm
+      :id="internet"
+      name="Internet"
+    >
       Internet
     </FixedForm>
     <TotalPay />
@@ -54,6 +72,18 @@ export default {
 		NotFixedForm,
 		FixedForm,
 		TotalPay
+	},
+	data () {
+		return {
+			electricity: 'electricity',
+			coldWater: 'coldWater',
+			coldWaterFixed: 'coldWaterFixed',
+			heating: 'heating',
+			otherServices: 'otherServices',
+			gas: 'gas',
+			gasFixed: 'gasFixed',
+			internet: 'internet'
+		}
 	}
 	// computed: {
 	// 	...mapGetters({
