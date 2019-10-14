@@ -38,7 +38,7 @@ export default {
 	},
 	computed: {
 		...mapGetters('Payments', {
-			neww: 'new'
+			singlePayment: 'singlePayment'
 		})
 	},
 	methods: {
@@ -46,7 +46,6 @@ export default {
 		handleClick (event) {
 			console.log('labytis')
 			console.log(moment().format('YYYY MM DD - h:mm:ss'))
-			console.log(this.neww)
 		}
 	}
 }

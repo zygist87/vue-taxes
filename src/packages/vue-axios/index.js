@@ -4,5 +4,14 @@
 // Vue.use(axios)
 
 // export default axios.create({
-// 	baseURL: 'https://boiling-reaches-93648.herokuapp.com/food-shop'
+// 	baseURL: 'https://vuetaxes.firebaseio.com/singlePayment.json'
 // })
+
+// methods: {
+//     postBlog: function() {
+//         this.$http.post('https://myfirstpersonalvuejs.firebaseio.com/posts.json', this.blog).then(function(data) {
+//             console.log(data)
+//             this.submitted = true
+//         })
+//     }
+// }

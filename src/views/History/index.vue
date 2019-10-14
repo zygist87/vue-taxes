@@ -21,7 +21,10 @@
         <span>How mutch was paid</span>
       </VueCell>
     </VueGrid>
-    <ul v-for="singleLine in singlePayment">
+    <ul
+      v-for="singleLine in singlePayment"
+      :key="singleLine.id"
+    >
       <li>
         <span>{{ singleLine.id }}</span>
         <span>{{ singleLine.name }}</span>

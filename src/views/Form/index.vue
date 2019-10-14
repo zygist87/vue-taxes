@@ -12,13 +12,14 @@
       :id="coldWater"
       name="Cold Water"
       :from="0"
-      :rate="0.56"
+      :rate="1.36"
     >
       Cold water
     </NotFixedForm>
     <FixedForm
       :id="coldWaterFixed"
       name="Cold Water Fixed Part"
+      :rate="1"
     >
       Cold water fixed part
     </FixedForm>
@@ -38,13 +39,14 @@
       :id="gas"
       name="Gas"
       :from="0"
-      :rate="1.36"
+      :rate="0.66"
     >
       Gas
     </NotFixedForm>
     <FixedForm
       :id="gasFixed"
       name="Gas Fixed"
+      rate="0.56"
     >
       Gas fixed part
     </FixedForm>
