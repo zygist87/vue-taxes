@@ -12,19 +12,16 @@
       <button @click="toConsole">
         to console.log
       </button>
-      <!-- <ul>
-        <li v-for="one in neww">
-          {{ one }}
-        </li>
-      </ul>
-      {{ singlePayment }}
-      {{ neww }} -->
+      <div>
+        {{ singlePayment }}
+      </div>
     </VueCell>
     <VueCell width="2of12">
       <input
         v-model="rate"
         type="number"
         placeholder="Fixed part"
+        @input="setSingleLine"
       >
     </VueCell>
     <VueCell width="2of12">
@@ -40,7 +37,8 @@
 
 <script>
 import { VueGrid, VueCell } from 'vue-grd'
-import { mapGetters } from 'vuex'
+import { SET_SINGLE_LINE } from '@/store/modules/Payments/mutation-types'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
 	name: 'FixedForm',
@@ -52,15 +50,21 @@ export default {
 		name: {
 			type: String,
 			default: null
+		},
+		id: {
+			type: String,
+			default: null
 		}
 	},
 	data () {
 		return {
 			form: {
+				id: this.id,
 				name: this.name,
 				rate: 0,
 				pay: 0
-			}
+			},
+			newww: 'naujas'
 		}
 	},
 	computed: {
@@ -74,19 +78,19 @@ export default {
 				this.form.pay = parseFloat(rate, 10).toFixed(2)
 			}
 		},
-		// ...mapState('Payments', {
-		// 	singlePayment: 'singlePayment'
-		// })
 		...mapGetters('Payments', {
-			singlePayment: 'singlePayment',
-			neww: 'new'
+			singlePayment: 'singlePayment'
 		})
 	},
 	created () {
-
+		this.setSingleLine(this.form)
 	},
 	methods: {
+		...mapMutations('Payments', {
+			setSingleLine: SET_SINGLE_LINE
+		}),
 		toConsole () {
+			console.log('id ' + this.form.id)
 			console.log('name ' + this.form.name)
 			console.log('rate ' + this.form.rate)
 			console.log('pay ' + this.form.pay)

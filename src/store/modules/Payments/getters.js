@@ -1,8 +1,6 @@
 export default {
-	singlePayment: state => state.singlePayment,
-	new: state => state.new,
-	payments: state => state.payments,
-	few: state => state.few
+	singlePayment: state => state.singlePayment
+
 	// favorites: state => state.favorites,
 	// products: state => {
 	// 	return state.products.map(product => {

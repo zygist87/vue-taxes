@@ -21,6 +21,14 @@
         <span>How mutch was paid</span>
       </VueCell>
     </VueGrid>
+    <ul v-for="singleLine in singlePayment">
+      <li>
+        <span>{{ singleLine.id }}</span>
+        <span>{{ singleLine.name }}</span>
+        <span>{{ singleLine.rate }}</span>
+        <span>{{ singleLine.pay }}</span>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -41,8 +49,8 @@ export default {
 	},
 	computed: {
 		...mapGetters('Payments', {
-			payments: 'payments',
-			few: 'few'
+			singlePayment: 'singlePayment'
+
 		})
 	}
 
@@ -50,6 +58,9 @@ export default {
 </script>
 
 <style scope lang="scss">
+	span {
+		padding: 10px;
+	}
 	.history-title {
 		text-align: center;
 		padding-bottom: 30px;

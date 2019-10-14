@@ -18,9 +18,12 @@
 </template>
 
 <script>
+
 import { VueGrid, VueCell } from 'vue-grd'
 import Button from './Button'
+import { mapGetters } from 'vuex'
 const moment = require('moment')
+
 export default {
 	name: 'TotalPay',
 	components: {
@@ -33,10 +36,17 @@ export default {
 
 		}
 	},
+	computed: {
+		...mapGetters('Payments', {
+			neww: 'new'
+		})
+	},
 	methods: {
+
 		handleClick (event) {
 			console.log('labytis')
 			console.log(moment().format('YYYY MM DD - h:mm:ss'))
+			console.log(this.neww)
 		}
 	}
 }
