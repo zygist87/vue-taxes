@@ -1,6 +1,6 @@
 export default {
-	singlePayment: state => state.singlePayment
-
+	singlePayment: state => state.singlePayment,
+	totalPay: state => state.totalPay
 	// favorites: state => state.favorites,
 	// products: state => {
 	// 	return state.products.map(product => {

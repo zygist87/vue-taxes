@@ -32,6 +32,8 @@
         <span>{{ singleLine.pay }}</span>
       </li>
     </ul>
+    <div>Moketi</div>
+    <div v-for="pay in totalPay">{{ pay }}gggggg</div>
   </div>
 </template>
 
@@ -52,11 +54,10 @@ export default {
 	},
 	computed: {
 		...mapGetters('Payments', {
-			singlePayment: 'singlePayment'
-
+			singlePayment: 'singlePayment',
+			totalPay: 'totalPay'
 		})
 	}
-
 }
 </script>
 

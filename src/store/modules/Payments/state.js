@@ -1,6 +1,6 @@
 export default () => ({
 	singlePayment: [],
-	totalPay: '',
+	totalPay: 777,
 	date: ''
 	// singlePayment: [
 	// 	{

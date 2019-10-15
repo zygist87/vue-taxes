@@ -27,6 +27,7 @@
         v-model="to"
         type="number"
         placeholder="To"
+		@input="updateSinglePayment(form)"
       >
     </VueCell>
     <VueCell width="2of12">
@@ -58,6 +59,8 @@
 
 <script>
 import { VueGrid, VueCell } from 'vue-grd'
+import {SET_SINGLE_LINE, UPDATE_SINGLE_PAYMENT} from '@/store/modules/Payments/mutation-types'
+import {mapMutations} from 'vuex'
 export default {
 	name: 'NotFixedForm',
 	components: {
@@ -85,6 +88,7 @@ export default {
 	data () {
 		return {
 			form: {
+				id: this.id,
 				name: this.name,
 				from: this.from,
 				to: 0,
@@ -108,9 +112,13 @@ export default {
 		}
 	},
 	created () {
-
+		this.setSingleLine({...this.form})
 	},
 	methods: {
+		...mapMutations('Payments', {
+			setSingleLine: SET_SINGLE_LINE,
+			updateSinglePayment: UPDATE_SINGLE_PAYMENT
+		}),
 		toConsole () {
 			console.log('name ' + this.form.name)
 			console.log('from ' + this.form.from)

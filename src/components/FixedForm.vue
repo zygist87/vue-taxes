@@ -9,9 +9,6 @@
       width="8of12"
     >
       <slot />
-      <!-- <button @click="toConsole">
-        to console.log
-      </button> -->
       <div>
         {{ singlePayment }}
       </div>
@@ -32,12 +29,15 @@
         disabled
       >
     </VueCell>
+    <button @click="toConsole()">
+      toConsole
+    </button>
   </VueGrid>
 </template>
 
 <script>
 import { VueGrid, VueCell } from 'vue-grd'
-import { SET_SINGLE_LINE, UPDATE_SINGLE_PAYMENT } from '@/store/modules/Payments/mutation-types'
+import { SET_SINGLE_LINE, UPDATE_SINGLE_PAYMENT, TOTAL_PAY } from '@/store/modules/Payments/mutation-types'
 import { mapGetters, mapMutations } from 'vuex'
 
 export default {
@@ -78,7 +78,8 @@ export default {
 			}
 		},
 		...mapGetters('Payments', {
-			singlePayment: 'singlePayment'
+			singlePayment: 'singlePayment',
+			totalPay: 'totalPay'
 		})
 	},
 	created () {
@@ -88,14 +89,12 @@ export default {
 		...mapMutations('Payments', {
 			setSingleLine: SET_SINGLE_LINE,
 			updateSinglePayment: UPDATE_SINGLE_PAYMENT
-		})
-		// toConsole () {
-		// 	console.log('id ' + this.form.id)
-		// 	console.log('name ' + this.form.name)
-		// 	console.log('rate ' + this.form.rate)
-		// 	console.log('pay ' + this.form.pay)
-		// }
-
+			// totalPay: TOTAL_PAY
+		}),
+		toConsole () {
+			console.log('labas')
+			console.log(this.totalPay)
+		}
 	}
 }
 
