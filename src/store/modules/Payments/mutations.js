@@ -35,18 +35,19 @@ export default {
 				)
 			}
 		})
-		// let total = 0
-		// state.totalPay = state.singlePayment.map(provider => {
-		// 	total = total + provider.pay
-		// 	return total
+
+		// state.singlePayment.map(provider => {
+		// 	state.totalPay = Number(state.totalPay) + Number(provider.pay)
 		// })
-		// console.log('state ' + state.totalPay)
+		// console.log(state.totalPay)
+	},
+	[TOTAL_PAY] (state) {
+		let bla = 0
+		state.singlePayment.map(provider => {
+			bla = bla + Number(provider.pay)
+		})
+		console.log('is muuuuu ' + bla)
 	}
-	// [TOTAL_PAY](state, form) {
-	// 	// total = 0
-	// 	state.totalPay = state.totalPaytotal + form.pay
-	// 	console.log(state.totalPay)
-	// }
 	// [SET_SINGLE_LINE] (state, payment) {
 	// 	state.new = products.map((product, index) => {
 	// 		product.id = index + 1

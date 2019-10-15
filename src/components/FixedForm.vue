@@ -18,7 +18,7 @@
         v-model="rate"
         type="number"
         placeholder="Fixed part"
-        @input="updateSinglePayment(form)"
+        @input="updateSinglePayment(form); totalPay(form)"
       >
     </VueCell>
     <VueCell width="2of12">
@@ -78,8 +78,7 @@ export default {
 			}
 		},
 		...mapGetters('Payments', {
-			singlePayment: 'singlePayment',
-			totalPay: 'totalPay'
+			singlePayment: 'singlePayment'
 		})
 	},
 	created () {
@@ -88,8 +87,8 @@ export default {
 	methods: {
 		...mapMutations('Payments', {
 			setSingleLine: SET_SINGLE_LINE,
-			updateSinglePayment: UPDATE_SINGLE_PAYMENT
-			// totalPay: TOTAL_PAY
+			updateSinglePayment: UPDATE_SINGLE_PAYMENT,
+			totalPay: TOTAL_PAY
 		}),
 		toConsole () {
 			console.log('labas')

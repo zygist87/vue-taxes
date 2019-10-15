@@ -32,8 +32,10 @@
         <span>{{ singleLine.pay }}</span>
       </li>
     </ul>
-    <div>Moketi</div>
-    <div v-for="pay in totalPay">{{ pay }}gggggg</div>
+    <button @click="count()">
+      lllll
+    </button>
+    <div>{{ totalPay }} gggggg</div>
   </div>
 </template>
 
@@ -57,6 +59,15 @@ export default {
 			singlePayment: 'singlePayment',
 			totalPay: 'totalPay'
 		})
+	},
+	methods: {
+		count () {
+			let	all = 0
+			this.singlePayment.map(provider => {
+				all = Number(all) + Number(provider.pay)
+			})
+			console.log(all)
+		}
 	}
 }
 </script>
