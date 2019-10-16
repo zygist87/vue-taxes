@@ -9,9 +9,6 @@
       width="8of12"
     >
       <slot />
-      <div>
-        {{ singlePayment }}
-      </div>
     </VueCell>
     <VueCell width="2of12">
       <input
@@ -29,9 +26,6 @@
         disabled
       >
     </VueCell>
-    <button @click="toConsole()">
-      toConsole
-    </button>
   </VueGrid>
 </template>
 
@@ -89,11 +83,7 @@ export default {
 			setSingleLine: SET_SINGLE_LINE,
 			updateSinglePayment: UPDATE_SINGLE_PAYMENT,
 			totalPay: TOTAL_PAY
-		}),
-		toConsole () {
-			console.log('labas')
-			console.log(this.totalPay)
-		}
+		})
 	}
 }
 

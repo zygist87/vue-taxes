@@ -9,44 +9,25 @@ export default {
 		if (state.singlePayment.length < 8) {
 			state.singlePayment = [...state.singlePayment, form]
 		}
-		localStorage.setItem(
-			'singlePayment',
-			JSON.stringify(state.singlePayment)
-		)
 	},
 	[UPDATE_SINGLE_PAYMENT] (state, form) {
 		// provider => form.find(id => id.id === provider.id) || provider
 		state.singlePayment.map(provider => {
 			if (provider.id === form.id) {
-				console.log('mutations ' + provider.id)
 				const index = state.singlePayment.findIndex(
 					x => x.id === form.id
 				)
-				console.log(index)
-				const removed = state.singlePayment.splice(index, 1)
-				console.log(removed)
+				state.singlePayment.splice(index, 1)
 				state.singlePayment = [...state.singlePayment, form]
-				console.log(state.singlePayment)
-				console.log('mutations total ' + state.totalPay)
-				// return { ...singlePayment }
-				localStorage.setItem(
-					'singlePayment',
-					JSON.stringify(state.singlePayment)
-				)
 			}
 		})
-
-		// state.singlePayment.map(provider => {
-		// 	state.totalPay = Number(state.totalPay) + Number(provider.pay)
-		// })
-		// console.log(state.totalPay)
 	},
 	[TOTAL_PAY] (state) {
-		let bla = 0
+		let pay = 0
 		state.singlePayment.map(provider => {
-			bla = bla + Number(provider.pay)
+			pay = pay + Number(provider.pay)
 		})
-		console.log('is muuuuu ' + bla)
+		state.totalPay = pay.toFixed(2)
 	}
 	// [SET_SINGLE_LINE] (state, payment) {
 	// 	state.new = products.map((product, index) => {

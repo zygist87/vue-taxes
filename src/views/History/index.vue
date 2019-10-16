@@ -12,7 +12,7 @@
         width="6of12"
         class="left-side"
       >
-        <span>{{ moment().format("YYYY MM DD - h:mm:ss") }}</span>
+        <span>Today is {{ moment().format("YYYY MM DD - h:mm:ss") }}</span>
       </VueCell>
       <VueCell
         width="6of12"
@@ -32,10 +32,7 @@
         <span>{{ singleLine.pay }}</span>
       </li>
     </ul>
-    <button @click="count()">
-      lllll
-    </button>
-    <div>{{ totalPay }} gggggg</div>
+    <div>Pay € {{ totalPay }}</div>
   </div>
 </template>
 
@@ -59,15 +56,6 @@ export default {
 			singlePayment: 'singlePayment',
 			totalPay: 'totalPay'
 		})
-	},
-	methods: {
-		count () {
-			let	all = 0
-			this.singlePayment.map(provider => {
-				all = Number(all) + Number(provider.pay)
-			})
-			console.log(all)
-		}
 	}
 }
 </script>

@@ -1,27 +1,37 @@
 <template>
-  <VueGrid
-    align="stretch"
-    justify="start"
-    class="total-pay"
-  >
-    <VueCell width="6of12">
-      Total Pay
-    </VueCell>
-    <VueCell width="4of12">
-      <Button @click="handleClick" />
-    </VueCell>
-
-    <VueCell width="2of12">
-      Mokėtina suma
-    </VueCell>
-  </VueGrid>
+  <div>
+    <VueGrid
+      align="stretch"
+      justify="start"
+      class="total-pay"
+    >
+      <VueCell width="10of12">
+        <h2>Total Pay</h2>
+      </VueCell>
+      <VueCell width="2of12">
+        <h2>€ {{ totalPay }}</h2>
+      </VueCell>
+    </VueGrid>
+    <VueGrid
+      align="stretch"
+      justify="end"
+      class="total-pay"
+    >
+      <VueCell
+        width="2of12"
+      >
+        <Button @click="toLocalStorage()" />
+      </VueCell>
+    </VueGrid>
+  </div>
 </template>
 
 <script>
 
 import { VueGrid, VueCell } from 'vue-grd'
 import Button from './Button'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
+import { TO_LOCAL_STORAGE } from '@/store/modules/Payments/action-types'
 const moment = require('moment')
 
 export default {
@@ -38,11 +48,14 @@ export default {
 	},
 	computed: {
 		...mapGetters('Payments', {
-			singlePayment: 'singlePayment'
+			singlePayment: 'singlePayment',
+			totalPay: 'totalPay'
 		})
 	},
 	methods: {
-
+		...mapActions('Payments', {
+			toLocalStorage: TO_LOCAL_STORAGE
+		}),
 		handleClick (event) {
 			console.log('labytis')
 			console.log(moment().format('YYYY MM DD - h:mm:ss'))

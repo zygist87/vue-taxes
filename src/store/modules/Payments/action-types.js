@@ -1,1 +1,2 @@
+export const TO_LOCAL_STORAGE = 'TO_LOCAL_STORAGE'
 // export const FETCH_PRODUCTS = 'FETCH_PRODUCTS'

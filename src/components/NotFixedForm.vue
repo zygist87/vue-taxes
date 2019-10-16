@@ -9,9 +9,6 @@
       width="2of12"
     >
       <slot />
-      <button @click="toConsole">
-        to console.log
-      </button>
     </VueCell>
     <VueCell width="2of12">
       <input
@@ -27,7 +24,8 @@
         v-model="to"
         type="number"
         placeholder="To"
-        @input="updateSinglePayment(form)"
+        min="0"
+        @input="updateSinglePayment(form); totalPay(form)"
       >
     </VueCell>
     <VueCell width="2of12">
@@ -59,7 +57,7 @@
 
 <script>
 import { VueGrid, VueCell } from 'vue-grd'
-import { SET_SINGLE_LINE, UPDATE_SINGLE_PAYMENT } from '@/store/modules/Payments/mutation-types'
+import { SET_SINGLE_LINE, UPDATE_SINGLE_PAYMENT, TOTAL_PAY } from '@/store/modules/Payments/mutation-types'
 import { mapMutations } from 'vuex'
 export default {
 	name: 'NotFixedForm',
@@ -117,16 +115,9 @@ export default {
 	methods: {
 		...mapMutations('Payments', {
 			setSingleLine: SET_SINGLE_LINE,
-			updateSinglePayment: UPDATE_SINGLE_PAYMENT
-		}),
-		toConsole () {
-			console.log('name ' + this.form.name)
-			console.log('from ' + this.form.from)
-			console.log('to ' + this.form.to)
-			console.log('difference ' + this.form.difference)
-			console.log('rate ' + this.form.rate)
-			console.log('pay ' + this.form.pay)
-		}
+			updateSinglePayment: UPDATE_SINGLE_PAYMENT,
+			totalPay: TOTAL_PAY
+		})
 	}
 
 }

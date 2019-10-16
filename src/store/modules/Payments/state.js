@@ -1,7 +1,14 @@
 export default () => ({
 	singlePayment: [],
 	totalPay: '',
-	date: ''
+	paymentDate: ''
+
+	// singlePayment: {
+	// 	providers: [],
+	// 	totalPay: '',
+	// 	paymentDate: ''
+	// }
+
 	// singlePayment: [
 	// 	{
 	// 		id: 'electricity',
