@@ -1,7 +1,8 @@
 import {
 	SET_SINGLE_LINE,
 	UPDATE_SINGLE_PAYMENT,
-	TOTAL_PAY
+	TOTAL_PAY,
+	UPDATE_DATE
 } from './mutation-types'
 
 export default {
@@ -28,23 +29,8 @@ export default {
 			pay = pay + Number(provider.pay)
 		})
 		state.totalPay = pay.toFixed(2)
+	},
+	[UPDATE_DATE] (state, date) {
+		state.paymentDate = date
 	}
-	// [SET_SINGLE_LINE] (state, payment) {
-	// 	state.new = products.map((product, index) => {
-	// 		product.id = index + 1
-	// 		product.image = `${product.image}?c=${index + 1}`
-	// 		return product
-	// 	})
-	// }
-
-	// 	[UPDATE_FAVOURITE] (state, product) {
-	// 		if (!state.favourites.includes(product.id)) {
-	// 			state.favourites.push(product.id)
-	// 		} else {
-	// 			state.favourites = state.favourites.filter(
-	// 				favourite => favourite !== product.id
-	// 			)
-	// 		}
-	// 		localStorage.setItem('favourites', JSON.stringify(state.favourites))
-	// 	}
 }

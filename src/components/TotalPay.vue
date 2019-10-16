@@ -20,7 +20,7 @@
       <VueCell
         width="2of12"
       >
-        <Button @click="toLocalStorage()" />
+        <Button @click="toLocalStorage" />
       </VueCell>
     </VueGrid>
   </div>
@@ -43,12 +43,11 @@ export default {
 	},
 	data () {
 		return {
-
+			moment: moment
 		}
 	},
 	computed: {
 		...mapGetters('Payments', {
-			singlePayment: 'singlePayment',
 			totalPay: 'totalPay'
 		})
 	},
@@ -57,8 +56,7 @@ export default {
 			toLocalStorage: TO_LOCAL_STORAGE
 		}),
 		handleClick (event) {
-			console.log('labytis')
-			console.log(moment().format('YYYY MM DD - h:mm:ss'))
+			// console.log(moment().format('YYYY MM DD - h:mm:ss'))
 		}
 	}
 }
