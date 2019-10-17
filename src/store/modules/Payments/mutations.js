@@ -33,8 +33,5 @@ export default {
 	},
 	[UPDATE_FROM_LOCAL] (state, result) {
 		state.fromLocal = result
-		console.log(
-			'mutacija, gaunu is local ' + state.fromLocal.singlePayment[0]
-		)
 	}
 }

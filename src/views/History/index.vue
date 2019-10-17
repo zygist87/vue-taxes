@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3 class="history-title">
-      Payments history
+      PAYMENTS HISTORY
     </h3>
     <VueGrid
       align="stretch"
@@ -19,7 +19,7 @@
         class="left-side"
       >
         <button @click="showMoreLess">
-          Show more
+          {{ paymentExpanded ? "Show less" : "Show more" }}
         </button>
       </VueCell>
       <VueCell
@@ -33,7 +33,7 @@
       v-for="provider in fromLocal.singlePayment"
       :key="provider.id"
     >
-      <li>
+      <li v-if="paymentExpanded">
         <span>{{ provider.name }}</span>
         <span>From: {{ provider.from }}</span>
         <span>To: {{ provider.to }}</span>
@@ -59,7 +59,7 @@ export default {
 	data () {
 		return {
 			moment: moment,
-			paymentExpanded: false
+			paymentExpanded: ''
 		}
 	},
 	computed: {
@@ -78,7 +78,11 @@ export default {
 			fetchPayments: FETCH_PAYMENTS
 		}),
 		showMoreLess () {
-			console.log('Show more less')
+			if (this.paymentExpanded) {
+				this.paymentExpanded = false
+			} else {
+				this.paymentExpanded = true
+			}
 		}
 	}
 }

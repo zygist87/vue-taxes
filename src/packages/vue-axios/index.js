@@ -1,5 +1,6 @@
 import axios from 'axios'
 
-export default axios.create({
-	baseURL: 'https://myfirstpersonalvuejs.firebaseio.com/posts.json'
+const HTTPClient = axios.create({
+	baseURL: 'https://myfirstpersonalvuejs.firebaseio.com'
 })
+export default HTTPClient

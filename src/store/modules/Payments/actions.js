@@ -1,5 +1,5 @@
 // import axios from '@/packages/vue-axios'
-import { TO_LOCAL_STORAGE, FETCH_PAYMENTS } from './action-types'
+import { TO_LOCAL_STORAGE, FETCH_PAYMENTS, TO_FIREBASE } from './action-types'
 import { UPDATE_DATE, UPDATE_FROM_LOCAL } from './mutation-types'
 
 export default {
@@ -24,9 +24,19 @@ export default {
 
 	[FETCH_PAYMENTS] ({ commit, state }) {
 		const fromLocal = JSON.parse(localStorage.getItem('singlePayment'))
-		console.log('action ' + fromLocal.totalPay)
 		commit(UPDATE_FROM_LOCAL, fromLocal)
 	}
+
+	// async [TO_FIREBASE] ({ commit }) {
+	// 	try {
+	// 		const { data } = await axios.post('/posts.json', {
+
+	// 		})
+	// 		commit(SELL_PORTFOLIO_STOCK, data)
+	// 	} catch (error) {
+	// 		console.log(error)
+	// 	}
+	// }
 }
 
 // to
