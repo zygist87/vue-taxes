@@ -25,7 +25,7 @@
         type="number"
         placeholder="To"
         min="0"
-        @input="updateSinglePayment(form); totalPay(form)"
+        @input="updateSinglePayment(form)"
       >
     </VueCell>
     <VueCell width="2of12">
@@ -57,8 +57,8 @@
 
 <script>
 import { VueGrid, VueCell } from 'vue-grd'
-import { SET_SINGLE_LINE, UPDATE_SINGLE_PAYMENT, TOTAL_PAY } from '@/store/modules/Payments/mutation-types'
-import { mapMutations } from 'vuex'
+import { SET_SINGLE_LINE, UPDATE_SINGLE_PAYMENT } from '@/store/modules/Payments/mutation-types'
+import { mapMutations, mapGetters } from 'vuex'
 export default {
 	name: 'NotFixedForm',
 	components: {
@@ -107,16 +107,23 @@ export default {
 				this.form.difference = parseFloat(to, 10) - parseFloat(this.form.from, 10)
 				this.form.pay = (this.form.difference * this.form.rate).toFixed(2)
 			}
-		}
+		},
+		...mapGetters('Payments', {
+			singlePayment: 'singlePayment'
+		})
 	},
 	created () {
-		this.setSingleLine({ ...this.form })
+		const itemFromState = this.singlePayment.find(item => item.id === this.form.id)
+		if (!itemFromState) {
+			this.setSingleLine({ ...this.form })
+		} else {
+			this.form = itemFromState
+		}
 	},
 	methods: {
 		...mapMutations('Payments', {
 			setSingleLine: SET_SINGLE_LINE,
-			updateSinglePayment: UPDATE_SINGLE_PAYMENT,
-			totalPay: TOTAL_PAY
+			updateSinglePayment: UPDATE_SINGLE_PAYMENT
 		})
 	}
 

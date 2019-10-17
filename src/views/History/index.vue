@@ -9,36 +9,46 @@
       class="fixed-form"
     >
       <VueCell
-        width="6of12"
+        width="4of12"
         class="left-side"
       >
-        <span>Today is {{ moment().format("YYYY MM DD - h:mm:ss") }}</span>
+        <span>{{ moment(fromLocal.paymentDate).format("YYYY MM DD - h:mm:ss") }}</span>
+      </VueCell>
+      <VueCell
+        width="2of12"
+        class="left-side"
+      >
+        <button @click="showMoreLess">
+          Show more
+        </button>
       </VueCell>
       <VueCell
         width="6of12"
         class="right-side"
       >
-        <span>How mutch was paid</span>
+        <span>€ {{ fromLocal.totalPay }}</span>
       </VueCell>
     </VueGrid>
     <ul
-      v-for="singleLine in singlePayment"
-      :key="singleLine.id"
+      v-for="provider in fromLocal.singlePayment"
+      :key="provider.id"
     >
       <li>
-        <span>{{ singleLine.id }}</span>
-        <span>{{ singleLine.name }}</span>
-        <span>{{ singleLine.rate }}</span>
-        <span>{{ singleLine.pay }}</span>
+        <span>{{ provider.name }}</span>
+        <span>From: {{ provider.from }}</span>
+        <span>To: {{ provider.to }}</span>
+        <span>Difference: {{ provider.difference }}</span>
+        <span>Rate: {{ provider.rate }}</span>
+        <span>Pay: € {{ provider.pay }}</span>
       </li>
     </ul>
-    <div>Pay € {{ totalPay }}</div>
   </div>
 </template>
 
 <script>
 import { VueGrid, VueCell } from 'vue-grd'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
+import { FETCH_PAYMENTS } from '@/store/modules/Payments/action-types'
 const moment = require('moment')
 export default {
 	name: 'HistoryView',
@@ -48,14 +58,28 @@ export default {
 	},
 	data () {
 		return {
-			moment: moment
+			moment: moment,
+			paymentExpanded: false
 		}
 	},
 	computed: {
 		...mapGetters('Payments', {
 			singlePayment: 'singlePayment',
-			totalPay: 'totalPay'
+			totalPay: 'totalPay',
+			paymentDate: 'paymentDate',
+			fromLocal: 'fromLocal'
 		})
+	},
+	created () {
+		this.fetchPayments()
+	},
+	methods: {
+		...mapActions('Payments', {
+			fetchPayments: FETCH_PAYMENTS
+		}),
+		showMoreLess () {
+			console.log('Show more less')
+		}
 	}
 }
 </script>
@@ -74,5 +98,6 @@ export default {
 	.right-side {
 		text-align: right;
 		padding-right: 20px;
+		color: darkblue;
 	}
 </style>

@@ -64,10 +64,10 @@
 import FixedForm from '@/components/FixedForm'
 import NotFixedForm from '@/components/NotFixedForm'
 import TotalPay from '@/components/TotalPay'
+import { mapGetters, mapActions } from 'vuex'
+import { FETCH_PAYMENTS } from '@/store/modules/Payments/action-types'
 // import { FETCH_PRODUCTS } from '@/store/modules/Products/action-types'
-// import { REQUESTING } from '@/store/modules/Products/status-types'
-// import { createNamespacedHelpers } from 'vuex'
-// const { mapActions, mapGetters } = createNamespacedHelpers('Products')
+
 export default {
 	name: 'FormView',
 	components: {
@@ -86,35 +86,25 @@ export default {
 			gasFixed: 'gasFixed',
 			internet: 'internet'
 		}
+	},
+	computed: {
+		...mapGetters('Payments', {
+			singlePayment: 'singlePayment'
+		})
+	},
+	created () {
+		this.fetchPayments()
+	},
+	methods: {
+		...mapActions('Payments', {
+			fetchPayments: FETCH_PAYMENTS
+		})
 	}
-	// computed: {
-	// 	...mapGetters({
-	// 		products: 'products',
-	// 		status: 'status'
-	// 	}),
-	// 	isRequesting () {
-	// 		return this.status === REQUESTING
-	// 	}
-	// },
-	// created () {
-	// 	this.fetchProducts()
-	// },
-	// methods: {
-	// 	...mapActions({
-	// 		fetchProducts: FETCH_PRODUCTS
-	// 	}),
-	// 	// ...mapMutations({
-	// 	// 	setStarOnProduct: STAR_PRODUCT
-	// 	// }),
-	// 	starProduct (product) {
-	// 		this.setStarOnProduct(product.id)
-	// 	}
-	// }
 }
 </script>
 
 <style lang="scss">
 	.total-pay {
-		color: red;
+		color: darkgreen;
 	}
 </style>

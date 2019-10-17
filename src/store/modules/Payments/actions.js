@@ -1,5 +1,6 @@
-import { TO_LOCAL_STORAGE } from './action-types'
-import { UPDATE_DATE } from './mutation-types'
+// import axios from '@/packages/vue-axios'
+import { TO_LOCAL_STORAGE, FETCH_PAYMENTS } from './action-types'
+import { UPDATE_DATE, UPDATE_FROM_LOCAL } from './mutation-types'
 
 export default {
 	async [TO_LOCAL_STORAGE] ({ commit, state }) {
@@ -16,8 +17,15 @@ export default {
 			totalPay: state.totalPay,
 			paymentDate: Date.now()
 		}
+		// commit(UPDATE_SINGLE_PAYMENT, payment.singlePayment)
 		commit(UPDATE_DATE, payment.paymentDate)
 		localStorage.setItem('singlePayment', JSON.stringify(payment))
+	},
+
+	[FETCH_PAYMENTS] ({ commit, state }) {
+		const fromLocal = JSON.parse(localStorage.getItem('singlePayment'))
+		console.log('action ' + fromLocal.totalPay)
+		commit(UPDATE_FROM_LOCAL, fromLocal)
 	}
 }
 
@@ -44,3 +52,13 @@ export default {
 // 	  this.blogs = blogsArray;
 // 	})
 //   }
+
+// this.$http
+// 			.post(
+// 				'https://myfirstpersonalvuejs.firebaseio.com/posts.json',
+// 				// this.blog
+// 				payment.singlePayment
+// 			)
+// 			.then(function (data) {
+// 				console.log(data)
+// 			})

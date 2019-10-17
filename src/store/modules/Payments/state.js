@@ -1,27 +1,20 @@
 export default () => ({
 	singlePayment: [],
 	totalPay: null,
-	paymentDate: null
+	paymentDate: null,
+	fromLocal: []
 })
 
-// singlePayment: {
-// 	providers: [],
-// 	totalPay: '',
-// 	paymentDate: ''
-// }
-
-// singlePayment: [
-// 	{
-// 		id: 'electricity',
+// full: {
+// 	electricity: {
 // 		name: 'Electricity',
-// 		from: 0,
-// 		to: '',
+// 		from: '78',
+// 		to: '78',
 // 		difference: '',
 // 		rate: 0.13,
 // 		pay: ''
 // 	},
-// 	{
-// 		id: 'coldWater',
+// 	coldWater: {
 // 		name: 'Cold Water',
 // 		from: 0,
 // 		to: '',
@@ -29,8 +22,7 @@ export default () => ({
 // 		rate: 1.36,
 // 		pay: ''
 // 	},
-// 	{
-// 		id: 'coldWaterFixed',
+// 	coldWaterFixed: {
 // 		name: 'Cold Water Fixed Part',
 // 		from: 0,
 // 		to: '',
@@ -38,20 +30,17 @@ export default () => ({
 // 		rate: 1,
 // 		pay: ''
 // 	},
-// 	{
-// 		id: 'heating',
+// 	heating: {
 // 		name: 'Heating',
 // 		rate: '',
 // 		pay: ''
 // 	},
-// 	{
-// 		id: 'otherServices',
+// 	otherServices: {
 // 		name: 'Other Services',
 // 		rate: '',
 // 		pay: ''
 // 	},
-// 	{
-// 		id: 'gas',
+// 	gas: {
 // 		name: 'Gas',
 // 		from: 0,
 // 		to: '',
@@ -59,21 +48,22 @@ export default () => ({
 // 		rate: 0.66,
 // 		pay: ''
 // 	},
-// 	{
-// 		id: 'gasFixed',
+// 	gasFixed: {
 // 		name: 'Gas Fixed Part',
 // 		rate: '',
 // 		pay: ''
 // 	},
-// 	{
-// 		id: 'internet',
+// 	internet: {
 // 		name: 'Internet',
 // 		rate: '',
 // 		pay: ''
-// 	},
-// 	{
-// 		totalPay: ''
 // 	}
-// ]
+// }
+
+// singlePayment: {
+// 	providers: [],
+// 	totalPay: '',
+// 	paymentDate: ''
+// }
 
 // stared: JSON.parse(localStorage.getItem('stared')) || []

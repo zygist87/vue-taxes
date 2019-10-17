@@ -1,8 +1,8 @@
 import {
 	SET_SINGLE_LINE,
 	UPDATE_SINGLE_PAYMENT,
-	TOTAL_PAY,
-	UPDATE_DATE
+	UPDATE_DATE,
+	UPDATE_FROM_LOCAL
 } from './mutation-types'
 
 export default {
@@ -22,8 +22,6 @@ export default {
 				state.singlePayment = [...state.singlePayment, form]
 			}
 		})
-	},
-	[TOTAL_PAY] (state) {
 		let pay = 0
 		state.singlePayment.map(provider => {
 			pay = pay + Number(provider.pay)
@@ -32,5 +30,11 @@ export default {
 	},
 	[UPDATE_DATE] (state, date) {
 		state.paymentDate = date
+	},
+	[UPDATE_FROM_LOCAL] (state, result) {
+		state.fromLocal = result
+		console.log(
+			'mutacija, gaunu is local ' + state.fromLocal.singlePayment[0]
+		)
 	}
 }

@@ -43,7 +43,8 @@ export default {
 	},
 	data () {
 		return {
-			moment: moment
+			moment: moment,
+			formyte: 'aneeeeeeee'
 		}
 	},
 	computed: {
@@ -56,8 +57,8 @@ export default {
 			toLocalStorage: TO_LOCAL_STORAGE
 		}),
 		handleClick (event) {
-			// console.log(moment().format('YYYY MM DD - h:mm:ss'))
 		}
+
 	}
 }
 </script>
