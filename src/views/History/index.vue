@@ -29,7 +29,7 @@
         <span>€ {{ fromLocal.totalPay }}</span>
       </VueCell>
     </VueGrid>
-    <ul
+    <!-- <ul
       v-for="provider in fromLocal.singlePayment"
       :key="provider.id"
     >
@@ -40,6 +40,32 @@
         <span>Difference: {{ provider.difference }}</span>
         <span>Rate: {{ provider.rate }}</span>
         <span>Pay: € {{ provider.pay }}</span>
+      </li>
+    </ul> -->
+    <h1>PAYMENTS FROM FIREBASE</h1>
+    <ul
+      v-for="fire in fromFirebase"
+      :key="fire.paymentDate"
+    >
+      <li>
+        <span>{{ moment(fire.paymentDate).format("YYYY MM DD - h:mm:ss") }}</span>
+        <button @click="showMoreLess">
+          {{ paymentExpanded ? "Show less" : "Show more" }}
+        </button>
+        <span>€ {{ fire.totalPay }}</span>
+        <ul
+          v-for="single in fire.singlePayment"
+          :key="single.paymentDate"
+        >
+          <li v-if="paymentExpanded">
+            <span>{{ single.name }}</span>
+            <span v-if="single.from">From: {{ single.from }}</span>
+            <span v-if="single.to">To: {{ single.to }}</span>
+            <span v-if="single.difference">Difference: {{ single.difference }}</span>
+            <span>Rate: {{ single.rate }}</span>
+            <span>Pay: € {{ single.pay }}</span>
+          </li>
+        </ul>
       </li>
     </ul>
   </div>
@@ -59,7 +85,8 @@ export default {
 	data () {
 		return {
 			moment: moment,
-			paymentExpanded: ''
+			paymentExpanded: '',
+			payments: []
 		}
 	},
 	computed: {
@@ -67,7 +94,8 @@ export default {
 			singlePayment: 'singlePayment',
 			totalPay: 'totalPay',
 			paymentDate: 'paymentDate',
-			fromLocal: 'fromLocal'
+			fromLocal: 'fromLocal',
+			fromFirebase: 'fromFirebase'
 		})
 	},
 	created () {

@@ -1,4 +1,4 @@
 export const TO_LOCAL_STORAGE = 'TO_LOCAL_STORAGE'
 export const FETCH_PAYMENTS = 'FETCH_PAYMENTS'
-export const TO_FIREBASE = 'TO_FIREBASE'
+// export const TO_FIREBASE = 'TO_FIREBASE'
 // export const SET_PAYMENT_DATE = 'SET_PAYMENT_DATE'

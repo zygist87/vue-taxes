@@ -43,8 +43,7 @@ export default {
 	},
 	data () {
 		return {
-			moment: moment,
-			formyte: 'aneeeeeeee'
+			moment: moment
 		}
 	},
 	computed: {

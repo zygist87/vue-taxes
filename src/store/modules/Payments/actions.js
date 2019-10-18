@@ -1,6 +1,10 @@
-// import axios from '@/packages/vue-axios'
-import { TO_LOCAL_STORAGE, FETCH_PAYMENTS, TO_FIREBASE } from './action-types'
-import { UPDATE_DATE, UPDATE_FROM_LOCAL } from './mutation-types'
+import axios from '@/packages/vue-axios'
+import { TO_LOCAL_STORAGE, FETCH_PAYMENTS } from './action-types'
+import {
+	UPDATE_DATE,
+	UPDATE_FROM_LOCAL,
+	UPDATE_FROM_FIREBASE
+} from './mutation-types'
 
 export default {
 	async [TO_LOCAL_STORAGE] ({ commit, state }) {
@@ -17,58 +21,38 @@ export default {
 			totalPay: state.totalPay,
 			paymentDate: Date.now()
 		}
-		// commit(UPDATE_SINGLE_PAYMENT, payment.singlePayment)
 		commit(UPDATE_DATE, payment.paymentDate)
 		localStorage.setItem('singlePayment', JSON.stringify(payment))
+		try {
+			await axios.post('/posts.json', {
+				...payment
+			})
+		} catch (error) {
+			console.log(error)
+		}
+		console.log('to firebase')
+		// location.reload()
 	},
 
-	[FETCH_PAYMENTS] ({ commit, state }) {
+	async [FETCH_PAYMENTS] ({ commit, state }) {
 		const fromLocal = JSON.parse(localStorage.getItem('singlePayment'))
 		commit(UPDATE_FROM_LOCAL, fromLocal)
+		try {
+			const { data } = await axios.get('/posts.json')
+			commit(UPDATE_FROM_FIREBASE, data)
+		} catch (error) {
+			console.log(error)
+		}
 	}
-
-	// async [TO_FIREBASE] ({ commit }) {
-	// 	try {
-	// 		const { data } = await axios.post('/posts.json', {
-
-	// 		})
-	// 		commit(SELL_PORTFOLIO_STOCK, data)
-	// 	} catch (error) {
-	// 		console.log(error)
-	// 	}
-	// }
 }
 
-// to
-// methods: {
-//     postBlog: function() {
-//         this.$http.post('https://myfirstpersonalvuejs.firebaseio.com/posts.json', this.blog).then(function(data) {
-//             console.log(data)
-//             this.submitted = true
-//         })
-//     }
-// }
-
-// from
-// created () {
-// 	this.$http.get('https://myfirstpersonalvuejs.firebaseio.com/posts.json').then(function(data) {
-// 	  return data.json();
-// 	}).then(function(data) {
-// 	  const blogsArray = [];
-// 	  for (let key in data) {
-// 		data[key].id = key;
-// 		blogsArray.push(data[key])
-// 	  }
-// 	  this.blogs = blogsArray;
-// 	})
+// this.$http.get('https://myfirstpersonalvuejs.firebaseio.com/posts.json').then(function(data) {
+// 	return data.json();
+// }).then(function(data) {
+//   const blogsArray = [];
+//   for (let key in data) {
+// 	data[key].id = key;
+// 	blogsArray.push(data[key])
 //   }
-
-// this.$http
-// 			.post(
-// 				'https://myfirstpersonalvuejs.firebaseio.com/posts.json',
-// 				// this.blog
-// 				payment.singlePayment
-// 			)
-// 			.then(function (data) {
-// 				console.log(data)
-// 			})
+//   this.blogs = blogsArray;
+// })

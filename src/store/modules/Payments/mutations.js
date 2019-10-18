@@ -2,7 +2,8 @@ import {
 	SET_SINGLE_LINE,
 	UPDATE_SINGLE_PAYMENT,
 	UPDATE_DATE,
-	UPDATE_FROM_LOCAL
+	UPDATE_FROM_LOCAL,
+	UPDATE_FROM_FIREBASE
 } from './mutation-types'
 
 export default {
@@ -33,5 +34,19 @@ export default {
 	},
 	[UPDATE_FROM_LOCAL] (state, result) {
 		state.fromLocal = result
+	},
+	[UPDATE_FROM_FIREBASE] (state, result) {
+		state.fromFirebase = result
 	}
 }
+
+// this.$http.get('https://myfirstpersonalvuejs.firebaseio.com/posts.json').then(function(data) {
+// 	return data.json();
+// }).then(function(data) {
+//   const blogsArray = [];
+//   for (let key in data) {
+// 	data[key].id = key;
+// 	blogsArray.push(data[key])
+//   }
+//   this.blogs = blogsArray;
+// })
