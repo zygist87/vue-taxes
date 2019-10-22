@@ -31,28 +31,20 @@ export default {
 			console.log(error)
 		}
 		console.log('to firebase')
-		// location.reload()
+		location.reload()
 	},
 
-	async [FETCH_PAYMENTS] ({ commit, state }) {
+	async [FETCH_PAYMENTS] ({ commit }) {
 		const fromLocal = JSON.parse(localStorage.getItem('singlePayment'))
 		commit(UPDATE_FROM_LOCAL, fromLocal)
 		try {
 			const { data } = await axios.get('/posts.json')
-			commit(UPDATE_FROM_FIREBASE, data)
+			let ob = Object.keys(data)
+				.map(key => data[key])
+				.reverse()
+			commit(UPDATE_FROM_FIREBASE, ob)
 		} catch (error) {
 			console.log(error)
 		}
 	}
 }
-
-// this.$http.get('https://myfirstpersonalvuejs.firebaseio.com/posts.json').then(function(data) {
-// 	return data.json();
-// }).then(function(data) {
-//   const blogsArray = [];
-//   for (let key in data) {
-// 	data[key].id = key;
-// 	blogsArray.push(data[key])
-//   }
-//   this.blogs = blogsArray;
-// })

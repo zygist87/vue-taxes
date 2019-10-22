@@ -29,7 +29,7 @@
         <span>€ {{ fromLocal.totalPay }}</span>
       </VueCell>
     </VueGrid>
-    <!-- <ul
+    <ul
       v-for="provider in fromLocal.singlePayment"
       :key="provider.id"
     >
@@ -41,7 +41,7 @@
         <span>Rate: {{ provider.rate }}</span>
         <span>Pay: € {{ provider.pay }}</span>
       </li>
-    </ul> -->
+    </ul>
     <h1>PAYMENTS FROM FIREBASE</h1>
     <ul
       v-for="fire in fromFirebase"

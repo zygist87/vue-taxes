@@ -37,6 +37,7 @@ export default {
 	},
 	[UPDATE_FROM_FIREBASE] (state, result) {
 		state.fromFirebase = result
+		console.log(result)
 	}
 }
 

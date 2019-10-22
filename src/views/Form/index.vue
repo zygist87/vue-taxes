@@ -3,7 +3,7 @@
     <NotFixedForm
       :id="electricity"
       name="Electricity"
-      :from="0"
+      :from="fromLocal.singlePayment[0].to"
       :rate="0.13"
     >
       Electricity
@@ -11,7 +11,7 @@
     <NotFixedForm
       :id="coldWater"
       name="Cold Water"
-      :from="0"
+      :from="fromLocal.singlePayment[1].to"
       :rate="1.36"
     >
       Cold water
@@ -38,7 +38,7 @@
     <NotFixedForm
       :id="gas"
       name="Gas"
-      :from="0"
+      :from="fromLocal.singlePayment[5].to"
       :rate="0.66"
     >
       Gas
@@ -89,7 +89,8 @@ export default {
 	},
 	computed: {
 		...mapGetters('Payments', {
-			singlePayment: 'singlePayment'
+			singlePayment: 'singlePayment',
+			fromLocal: 'fromLocal'
 		})
 	},
 	created () {
