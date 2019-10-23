@@ -3,7 +3,7 @@
     <NotFixedForm
       :id="electricity"
       name="Electricity"
-      :from="fromLocal.singlePayment[0].to"
+      :from="updateForm(electricity)"
       :rate="0.13"
     >
       Electricity
@@ -11,7 +11,7 @@
     <NotFixedForm
       :id="coldWater"
       name="Cold Water"
-      :from="fromLocal.singlePayment[1].to"
+      :from="updateForm(coldWater)"
       :rate="1.36"
     >
       Cold water
@@ -38,7 +38,7 @@
     <NotFixedForm
       :id="gas"
       name="Gas"
-      :from="fromLocal.singlePayment[5].to"
+      :from="updateForm(gas)"
       :rate="0.66"
     >
       Gas
@@ -66,7 +66,6 @@ import NotFixedForm from '@/components/NotFixedForm'
 import TotalPay from '@/components/TotalPay'
 import { mapGetters, mapActions } from 'vuex'
 import { FETCH_PAYMENTS } from '@/store/modules/Payments/action-types'
-// import { FETCH_PRODUCTS } from '@/store/modules/Products/action-types'
 
 export default {
 	name: 'FormView',
@@ -99,7 +98,17 @@ export default {
 	methods: {
 		...mapActions('Payments', {
 			fetchPayments: FETCH_PAYMENTS
-		})
+		}),
+		updateForm (name) {
+			const bla = this.fromLocal.singlePayment
+			let result = 0
+			bla.map(provider => {
+				if (provider.id === name) {
+					result = provider.to
+				}
+			})
+			return result
+		}
 	}
 }
 </script>

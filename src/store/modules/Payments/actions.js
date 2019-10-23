@@ -8,30 +8,38 @@ import {
 
 export default {
 	async [TO_LOCAL_STORAGE] ({ commit, state }) {
+		let itsOK = 1
 		state.singlePayment.map(provider => {
-			if (provider.pay <= 0) {
-				// console.log('kazkas nedarasyta arba -')
-				// alert('check fields')
+			if (
+				provider.pay < 0 ||
+				provider.to === null ||
+				provider.rate === undefined
+			) {
+				alert("Check input field 'To' of " + provider.name + ' form')
+				return (itsOK = 0)
 			} else {
 				console.log('viskas tvarkoje')
 			}
 		})
-		const payment = {
-			singlePayment: state.singlePayment,
-			totalPay: state.totalPay,
-			paymentDate: Date.now()
+		if (itsOK !== 0) {
+			const payment = {
+				singlePayment: state.singlePayment,
+				totalPay: state.totalPay,
+				paymentDate: Date.now()
+			}
+			commit(UPDATE_DATE, payment.paymentDate)
+			localStorage.setItem('singlePayment', JSON.stringify(payment))
+			try {
+				await axios.post('/posts.json', {
+					...payment
+				})
+			} catch (error) {
+				console.log(error)
+			}
+			location.reload()
+		} else {
+			console.log('kazkas negerai')
 		}
-		commit(UPDATE_DATE, payment.paymentDate)
-		localStorage.setItem('singlePayment', JSON.stringify(payment))
-		try {
-			await axios.post('/posts.json', {
-				...payment
-			})
-		} catch (error) {
-			console.log(error)
-		}
-		console.log('to firebase')
-		location.reload()
 	},
 
 	async [FETCH_PAYMENTS] ({ commit }) {
@@ -39,10 +47,10 @@ export default {
 		commit(UPDATE_FROM_LOCAL, fromLocal)
 		try {
 			const { data } = await axios.get('/posts.json')
-			let ob = Object.keys(data)
+			let objectOfKeys = Object.keys(data)
 				.map(key => data[key])
 				.reverse()
-			commit(UPDATE_FROM_FIREBASE, ob)
+			commit(UPDATE_FROM_FIREBASE, objectOfKeys)
 		} catch (error) {
 			console.log(error)
 		}

@@ -3,7 +3,7 @@
     <h3 class="history-title">
       PAYMENTS HISTORY
     </h3>
-    <VueGrid
+    <!-- <VueGrid
       align="stretch"
       justify="start"
       class="fixed-form"
@@ -42,17 +42,23 @@
         <span>Pay: € {{ provider.pay }}</span>
       </li>
     </ul>
-    <h1>PAYMENTS FROM FIREBASE</h1>
+    <h1>PAYMENTS FROM FIREBASE</h1> -->
+    <button
+      class="more-button"
+      @click="showMoreLess"
+    >
+      {{ paymentExpanded ? "Show less" : "Show more" }}
+    </button>
     <ul
       v-for="fire in fromFirebase"
       :key="fire.paymentDate"
     >
       <li>
-        <span>{{ moment(fire.paymentDate).format("YYYY MM DD - h:mm:ss") }}</span>
-        <button @click="showMoreLess">
+        <span class="payment-title">{{ moment(fire.paymentDate).format("YYYY MM DD - h:mm:ss") }}</span>
+        <!-- <button @click="showMoreLess">
           {{ paymentExpanded ? "Show less" : "Show more" }}
-        </button>
-        <span>€ {{ fire.totalPay }}</span>
+        </button> -->
+        <span class="payment-title">€ {{ fire.totalPay }}</span>
         <ul
           v-for="single in fire.singlePayment"
           :key="single.paymentDate"
@@ -72,16 +78,16 @@
 </template>
 
 <script>
-import { VueGrid, VueCell } from 'vue-grd'
+// import { VueGrid, VueCell } from 'vue-grd'
 import { mapGetters, mapActions } from 'vuex'
 import { FETCH_PAYMENTS } from '@/store/modules/Payments/action-types'
 const moment = require('moment')
 export default {
 	name: 'HistoryView',
-	components: {
-		VueGrid,
-		VueCell
-	},
+	// components: {
+	// 	VueGrid,
+	// 	VueCell
+	// },
 	data () {
 		return {
 			moment: moment,
@@ -131,5 +137,16 @@ export default {
 		text-align: right;
 		padding-right: 20px;
 		color: darkblue;
+	}
+	.more-button {
+		width: 100px;
+		height: 24px;
+		background-color: orange;
+		border: 1px solid orange;
+		border-radius: 6px;
+	}
+	.payment-title {
+		color: red;
+		font-size: 20px;
 	}
 </style>
